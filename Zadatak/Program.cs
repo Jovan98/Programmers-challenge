@@ -38,13 +38,25 @@ namespace Zadatak
 
             var letters = lowerCase.ToCharArray();
 
+            var realStep = step % 26;
+
             foreach (var letter in letters)
             {
                 var x = Convert.ToInt32(letter);
 
                 if (x >= 97 && x <= 122)
                 {
-                    x = (x + step) % 97 + 97;
+                    var y = x + realStep;
+
+                    if (y > 122)
+                    {
+                        x = y % 123 + 97;
+
+                    }
+                    else
+                    {
+                        x = y % 97 + 97;
+                    }
                 }
                 result += Convert.ToChar(x);
             }
